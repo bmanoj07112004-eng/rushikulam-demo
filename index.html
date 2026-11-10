@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/rushikulam-demo/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="RUSHIKULAM — Chanting, Philosophy of Life, Read Books and Appointments. Demo app.">
+  <meta name="theme-color" content="#6B1E1E">
+
+  <!-- A demo: kept out of search engines. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Added to an iPhone's home screen from Safari, it opens full screen like an app. -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RUSHIKULAM">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="preload" as="image" href="splash-mark.png">
+
+  <title>RUSHIKULAM — Demo</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #EFE6DA; }
+    #splash {
+      position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 50% 38%, #7C2424 0%, #5A1717 48%, #3A0E0E 100%);
+      color: #D9B872; font-family: Georgia, 'Times New Roman', serif; transition: opacity .55s ease;
+    }
+    #splash img { width: 132px; height: auto; animation: breathe 2.6s ease-in-out infinite; }
+    #splash .name { margin-top: 22px; font-size: 30px; letter-spacing: .34em; padding-left: .34em; color: #F4E0AE; }
+    #splash .slogan { margin-top: 10px; font-size: 13px; letter-spacing: .22em; padding-left: .22em; text-transform: uppercase; color: rgba(244,224,174,.72); }
+    #splash .bar { margin-top: 34px; width: 132px; height: 2px; border-radius: 2px; background: rgba(217,184,114,.22); overflow: hidden; }
+    #splash .bar i { display: block; width: 40%; height: 100%; border-radius: 2px; background: #D9B872; animation: slide 1.5s ease-in-out infinite; }
+    @keyframes breathe { 0%, 100% { opacity: .82; transform: scale(1); } 50% { opacity: 1; transform: scale(1.035); } }
+    @keyframes slide { 0% { transform: translateX(-110%); } 100% { transform: translateX(260%); } }
+    #splash.gone { opacity: 0; pointer-events: none; }
+    @media (prefers-reduced-motion: reduce) { #splash img, #splash .bar i { animation: none; } }
+  </style>
+</head>
+<body>
+  <div id="splash">
+    <img src="splash-mark.png" alt="Rushikulam">
+    <div class="name">RUSHIKULAM</div>
+    <div class="slogan">Chant · Learn · Live</div>
+    <div class="bar"><i></i></div>
+  </div>
+  <script>
+    // Fade the loading screen out when Flutter draws its first frame.
+    window.addEventListener('flutter-first-frame', function () {
+      var s = document.getElementById('splash');
+      if (!s) return;
+      s.classList.add('gone');
+      setTimeout(function () { s.remove(); }, 650);
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
